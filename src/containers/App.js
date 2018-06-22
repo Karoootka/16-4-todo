@@ -1,5 +1,6 @@
 import React from 'react';
 import uuid from 'uuid';
+import style from './App.css';
 
 class App extends React.Component {
     constructor(props){
@@ -15,6 +16,17 @@ class App extends React.Component {
         };
         const data = [...this.state.data, todo];
         this.setState({data}); // {data: data}
+    }
+    removeTodo(id){
+      const remainder = this.state.data.filter(todo => todo.id !== id);
+      this.setState({data: remainder});
+    }
+    render() {
+      return (
+        <div className={style.TodoApp}>
+          TU BEDA KOMPONENTY
+        </div>
+      )
     }
 }
 
