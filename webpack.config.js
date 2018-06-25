@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = (env) => {
   return {
@@ -12,7 +13,10 @@ module.exports = (env) => {
       rules: [
         {
           test: /\.js$/,
-          loader: "babel-loader"
+          loader: "babel-loader",
+          options: {
+            plugins: env != 'production' ? ["react-hot-loader/babel"] : []
+          }
         },
         {
           test: /\.css$/,
@@ -27,6 +31,11 @@ module.exports = (env) => {
           ]
         }
       ]
-    }
+    },
+    plugins: [new HtmlWebpackPlugin({
+      template: 'src/index.html',
+      filename: 'index.html',
+      inject: 'body'
+    })]
   }
 };
